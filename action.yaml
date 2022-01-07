@@ -1,0 +1,12 @@
+name: "Transpile Docker image"
+description: "Tests and builds a docker image"
+runs:
+  using: composite
+  steps:
+    - name: Test and Transpile
+      run: docker-compose run serviceBuilder
+      shell: bash
+
+    - name: Build the Docker image
+      run: docker build --build-arg NPM_TOKEN -t service .
+      shell: bash
